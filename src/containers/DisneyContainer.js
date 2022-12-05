@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import RandomCharacter from '../components/RandomCharacter';
 import CharacterForm from '../components/CharacterForm';
 import KnownFilms from '../components/KnownFilms';
+import KnownTv from '../components/KnownTv';
+import FavouriteButton from '../components/FavouriteButton';
 
-const DisneyContainer = ({ charactersApi, updateCharactersApi }) => {
+const DisneyContainer = ({ updateCharactersApi }) => {
     const [knownFilms, findKnownFilms] = useState("Finding Films")
+    const [knownTv, findKnownTv] = useState("Finding Tv Shows")
+    let favouriteCharacterList = []
     const [randomCharacter, setRandomCharacter] = useState(
         {
             "_id": 4703,
@@ -135,25 +139,59 @@ const DisneyContainer = ({ charactersApi, updateCharactersApi }) => {
             .catch(err => console.error);
     }
 
+    const findTv = url => {
+        fetch(url)
+            .then(res => res.json())
+            .then(randomCharacter => findKnownTv(randomCharacter.tvShows))
+            .catch(err => console.error);
+    }
+
+
+    const handleFavouriteButton = ((faveCharacter)=>{
+        const favUrl = `https://api.disneyapi.dev/characters/${faveCharacter}`
+        addFavCharacter(favUrl)
+        console.log(favUrl)
+    });
+
+    const addFavCharacter = favUrl => {
+        fetch(favUrl)
+            .then(res => res.json())
+            .then(faveCharacter => addNewFav(faveCharacter))
+            .catch(err => console.error);
+    }
+
+    const addNewFav = ((faveCharacter)=>{
+        favouriteCharacterList.push(faveCharacter)
+        console.log(faveCharacter)
+        console.log(favouriteCharacterList)
+    });
+    const showFaveList = favouriteCharacterList.map((character)=>{
+       const charName = character.name 
+    return(charName)
+})
 
     const handleSubmit = randomCharacterId => {
         const newUrl = `https://api.disneyapi.dev/characters/${randomCharacterId}`
         updateCharactersApi(randomCharacterId, newUrl)
         loadCharacters(newUrl)
         findFilms(newUrl)
+        findTv(newUrl)
     };
 
     return (
         <>
             <h1>Character Finder</h1>
             <CharacterForm onSubmit={handleSubmit} />
+            <h2>Your favourite characters are:</h2>
+            <ul>{showFaveList}</ul>
+            <RandomCharacter randomCharacter={randomCharacter} />
+            <FavouriteButton handleFavouriteButton={handleFavouriteButton} randomCharacter={randomCharacter}/>
             <div className="charInfo">
-                <RandomCharacter randomCharacter={randomCharacter} />
                 <KnownFilms knownFilms={knownFilms} />
+                <KnownTv KnownTv={knownTv} />
             </div>
         </>
     );
-
-}
+    }
 
 export default DisneyContainer;

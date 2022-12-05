@@ -1,10 +1,14 @@
 import React from 'react';
 
 const KnownFilms = ({ knownFilms }) => {
-    console.log([knownFilms][0].toString())
-    const chosenRandomCharacterFilms = knownFilms.length > 0 ? [knownFilms][0].toString() : "No known films" 
+    const chosenRandomCharacterFilms = knownFilms.length > 0 ? [knownFilms].toString() : "No known films" 
+
             return (
-                <div id="filmInfo"> They are known to appear in: {chosenRandomCharacterFilms}</div>
+                <div id="filmInfo"> 
+                <h3>Films:</h3>
+                <p>This Character is in {knownFilms.length} films</p>
+                <p>{chosenRandomCharacterFilms}</p>
+                </div>
             )
         }
         export default KnownFilms;

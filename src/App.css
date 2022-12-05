@@ -58,12 +58,12 @@ form>label {
     padding: 3rem;
     width: 80%;
     border: solid #0d0735;
-    margin: 2rem;;
+    margin: 2rem;
+    align-items: stretch
 }
 
 #filmInfo{
     margin: 2rem;;
     height: 100%;
     width: 50%
-
 }

@@ -6,7 +6,8 @@ const RandomCharacter = ({ randomCharacter }) => {
 
     return (
         <div>
-                <h3>Your Random Character Is: {chosenRandomCharacterName}</h3>
+                <h3>Your Random Character Is: </h3>
+                    <p><b>{chosenRandomCharacterName}</b></p>
                 <img src={imageUrl} alt='thumbnail of character'/>
         </div>
     )
