@@ -6,6 +6,7 @@ const KnownTv = ({ KnownTv }) => {
     return (
         <div id="filmInfo">
             <h3>TV Shows:</h3>
+            <b><p>This Character is in {KnownTv.length} films</p></b>
             <p>{chosenRandomCharacterTv}</p>
         </div>
     )

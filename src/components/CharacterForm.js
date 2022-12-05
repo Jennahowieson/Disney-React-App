@@ -16,7 +16,6 @@ const CharacterForm = ({ onSubmit }) => {
     }
 
     return (
-        <div>
             <form onSubmit={handleFormSubmit}>
                 <label htmlFor="randomCharacter">Choose a number </label>
                 <input
@@ -32,7 +31,6 @@ const CharacterForm = ({ onSubmit }) => {
                     value='submit'
                 />
             </form>
-        </div>
     )
 }
 

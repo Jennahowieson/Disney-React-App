@@ -8,7 +8,7 @@ import FavouriteButton from '../components/FavouriteButton';
 const DisneyContainer = ({ updateCharactersApi }) => {
     const [knownFilms, findKnownFilms] = useState("Finding Films")
     const [knownTv, findKnownTv] = useState("Finding Tv Shows")
-    let favouriteCharacterList = []
+    const [favouriteCharacterList, updateFavesList] = useState([])
     const [randomCharacter, setRandomCharacter] = useState(
         {
             "_id": 4703,
@@ -123,6 +123,8 @@ const DisneyContainer = ({ updateCharactersApi }) => {
     useEffect(() => {
         loadCharacters('https://api.disneyapi.dev/characters/4703')
         findFilms('https://api.disneyapi.dev/characters/4703')
+        findTv('https://api.disneyapi.dev/characters/4703')
+        addFavCharacter('https://api.disneyapi.dev/characters/4703')
     }, [])
 
     const loadCharacters = url => {
@@ -147,7 +149,7 @@ const DisneyContainer = ({ updateCharactersApi }) => {
     }
 
 
-    const handleFavouriteButton = ((faveCharacter)=>{
+    const handleFavouriteButton = ((faveCharacter) => {
         const favUrl = `https://api.disneyapi.dev/characters/${faveCharacter}`
         addFavCharacter(favUrl)
         console.log(favUrl)
@@ -160,15 +162,17 @@ const DisneyContainer = ({ updateCharactersApi }) => {
             .catch(err => console.error);
     }
 
-    const addNewFav = ((faveCharacter)=>{
-        favouriteCharacterList.push(faveCharacter)
-        console.log(faveCharacter)
-        console.log(favouriteCharacterList)
+    const addNewFav = ((faveCharacter) => {
+        console.log(`fave char is ${faveCharacter}`)
+        updateFavesList(favouriteCharacterList.concat([faveCharacter]));
+        console.log(`fave char list is ${favouriteCharacterList}`)
+
+
     });
-    const showFaveList = favouriteCharacterList.map((character)=>{
-       const charName = character.name 
-    return(charName)
-})
+
+    const showFaveList = favouriteCharacterList.map((character, index) => {
+        return <li key={index}>{character.name}</li>
+    })
 
     const handleSubmit = randomCharacterId => {
         const newUrl = `https://api.disneyapi.dev/characters/${randomCharacterId}`
@@ -182,16 +186,18 @@ const DisneyContainer = ({ updateCharactersApi }) => {
         <>
             <h1>Character Finder</h1>
             <CharacterForm onSubmit={handleSubmit} />
-            <h2>Your favourite characters are:</h2>
-            <ul>{showFaveList}</ul>
-            <RandomCharacter randomCharacter={randomCharacter} />
-            <FavouriteButton handleFavouriteButton={handleFavouriteButton} randomCharacter={randomCharacter}/>
             <div className="charInfo">
+                <RandomCharacter randomCharacter={randomCharacter} />
                 <KnownFilms knownFilms={knownFilms} />
                 <KnownTv KnownTv={knownTv} />
             </div>
+            <FavouriteButton handleFavouriteButton={handleFavouriteButton} randomCharacter={randomCharacter} />
+            <div className="charInfo">
+                <h2>Your favourite characters are:</h2>
+                <ul>{showFaveList}</ul>
+            </div>
         </>
     );
-    }
+}
 
 export default DisneyContainer;

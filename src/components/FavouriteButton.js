@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 const FavouriteButton = ({ handleFavouriteButton, randomCharacter }) => {
 
-    const [faveCharacter, setFaveCharacterId] = useState("");
+    const [faveCharacter, setFaveCharacterId] = useState();
+
 
     const handleFaveCharacterChange = (randomCharacter) => {
         let newFaveCharacter = { faveCharacter };
@@ -19,9 +20,9 @@ const FavouriteButton = ({ handleFavouriteButton, randomCharacter }) => {
     }
 
     return (
-        <form onSubmit={handleButtonSubmit}>
+        <form onSubmit={handleButtonSubmit} id='favButton'>
             <input type="checkbox" value={faveCharacter} />
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Mark As Favourite" />
         </form >
     )
 }

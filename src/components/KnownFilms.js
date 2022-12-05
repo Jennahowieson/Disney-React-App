@@ -6,7 +6,7 @@ const KnownFilms = ({ knownFilms }) => {
             return (
                 <div id="filmInfo"> 
                 <h3>Films:</h3>
-                <p>This Character is in {knownFilms.length} films</p>
+                <b><p>This Character is in {knownFilms.length} films</p></b>
                 <p>{chosenRandomCharacterFilms}</p>
                 </div>
             )

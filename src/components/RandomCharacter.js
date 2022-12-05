@@ -5,7 +5,7 @@ const RandomCharacter = ({ randomCharacter }) => {
     const imageUrl = randomCharacter.imageUrl
 
     return (
-        <div>
+        <div id='randomCharacter'>
                 <h3>Your Random Character Is: </h3>
                     <p><b>{chosenRandomCharacterName}</b></p>
                 <img src={imageUrl} alt='thumbnail of character'/>
