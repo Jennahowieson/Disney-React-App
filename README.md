@@ -2,6 +2,8 @@
 
 Personal weekend project, building a Disney Character Finder using a 3rd party API to randomly generate a character based on the number entered by the user.
 
+Live project at: https://jennahowieson.github.io/Disney-React-App/
+
 
 Built with Javascript & using React and a Disney API (https://disneyapi.dev/docs)
 
