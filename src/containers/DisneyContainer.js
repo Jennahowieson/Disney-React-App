@@ -148,11 +148,9 @@ const DisneyContainer = ({ updateCharactersApi }) => {
             .catch(err => console.error);
     }
 
-
     const handleFavouriteButton = ((faveCharacter) => {
         const favUrl = `https://api.disneyapi.dev/characters/${faveCharacter}`
         addFavCharacter(favUrl)
-        console.log(favUrl)
     });
 
     const addFavCharacter = favUrl => {
@@ -163,16 +161,9 @@ const DisneyContainer = ({ updateCharactersApi }) => {
     }
 
     const addNewFav = ((faveCharacter) => {
-        console.log(`fave char is ${faveCharacter}`)
-        updateFavesList(favouriteCharacterList.concat([faveCharacter]));
-        console.log(`fave char list is ${favouriteCharacterList}`)
-
-
+        const newList = [...favouriteCharacterList, faveCharacter]
+        updateFavesList(newList)
     });
-
-    const showFaveList = favouriteCharacterList.map((character, index) => {
-        return <li key={index}>{character.name}</li>
-    })
 
     const handleSubmit = randomCharacterId => {
         const newUrl = `https://api.disneyapi.dev/characters/${randomCharacterId}`
@@ -182,18 +173,28 @@ const DisneyContainer = ({ updateCharactersApi }) => {
         findTv(newUrl)
     };
 
+    const showFaveList = favouriteCharacterList.map((character, index) => {
+        return (
+            <li key={index}><b>{character.name}</b> ( {character._id} )</li>
+        )
+    })
+
     return (
         <>
             <h1>Character Finder</h1>
             <CharacterForm onSubmit={handleSubmit} />
-            <div className="charInfo">
-                <RandomCharacter randomCharacter={randomCharacter} />
-                <KnownFilms knownFilms={knownFilms} />
-                <KnownTv KnownTv={knownTv} />
+            <div className="box">
+                <h2>Your Random Character Is: </h2>
+                    <h3>{randomCharacter.name} </h3>
+                <div className="charInfo">
+                    <RandomCharacter randomCharacter={randomCharacter} />
+                    <KnownFilms knownFilms={knownFilms} />
+                    <KnownTv KnownTv={knownTv} />
+                </div>
+                <FavouriteButton handleFavouriteButton={handleFavouriteButton} randomCharacter={randomCharacter} />
             </div>
-            <FavouriteButton handleFavouriteButton={handleFavouriteButton} randomCharacter={randomCharacter} />
-            <div className="charInfo">
-                <h2>Your favourite characters are:</h2>
+            <h2>Your favourite characters are:</h2>
+            <div className="faveInfo">
                 <ul>{showFaveList}</ul>
             </div>
         </>

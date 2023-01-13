@@ -18,18 +18,21 @@ const CharacterForm = ({ onSubmit }) => {
     return (
             <form onSubmit={handleFormSubmit}>
                 <label htmlFor="randomCharacter">Choose a number </label>
+                <div>
                 <input
                     name="randomCharacter"
-                    type="number"
+                    type="text"
                     value={randomCharacterId}
                     onChange={handleCharacterChange}
                     max="7526"
                     placeholder="1 - 7526"
+                    id='numberInput'
                 />
                 <input id='input'
                     type='submit'
                     value='submit'
                 />
+                </div>
             </form>
     )
 }
