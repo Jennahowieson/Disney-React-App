@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/disney_app/static/css/main.20fe7781.css",
+    "main.js": "/disney_app/static/js/main.40bc727f.js",
+    "static/js/787.4ef1c22f.chunk.js": "/disney_app/static/js/787.4ef1c22f.chunk.js",
+    "index.html": "/disney_app/index.html",
+    "main.20fe7781.css.map": "/disney_app/static/css/main.20fe7781.css.map",
+    "main.40bc727f.js.map": "/disney_app/static/js/main.40bc727f.js.map",
+    "787.4ef1c22f.chunk.js.map": "/disney_app/static/js/787.4ef1c22f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.20fe7781.css",
+    "static/js/main.40bc727f.js"
+  ]
+}
